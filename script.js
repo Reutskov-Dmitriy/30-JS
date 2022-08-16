@@ -11,26 +11,37 @@ alert(message);
 
 // Запитай у користувача 2 числа і знайди найбільший спільний дільник.
 
-const randomArray = [];
+let numArray = [];
 const size = 2;
 for (let i = 0; i < size; i++) {
-	randomArray[i] = prompt('enter array element' + (i + 1));
+	numArray[i] = prompt('enter array element' + (i + 1));
 }
-console.log(randomArray);
-if (randomArray[0] === randomArray[1]) {
-	const greatestCommonDivisor = randomArray[0];
-	alert(greatestCommonDivisor);
-} else if (randomArray[0] > randomArray[1]) {
-	let quotientMultipliedElemArr = (Math.floor(randomArray[0] / randomArray[1]) * randomArray[1]);
-	let residual = randomArray[0] - quotientMultipliedElemArr;
-	const randomArray2 = [randomArray[1], residual];
-	alert(randomArray2)
-
+if (numArray[0] === numArray[1]) {
+	const greatestCommonDivisor = numArray[0];
+	alert('Greatest Common Divisor ' + greatestCommonDivisor);
+} else if (numArray[0] % numArray[1] == 0) {
+	let residual = numArray[1];
+	alert('Greatest Common Divisor ' + residual)
+} else if (numArray[1] % numArray[0] == 0) {
+	let residual = numArray[0];
+	alert('Greatest Common Divisor ' + residual)
+} else if (numArray[0] > numArray[1]) {
+	let residual
+	while (numArray[0] % numArray[1] !== 0) {
+		residual = numArray[0] % numArray[1];
+		numArray = [numArray[1], residual];
+	}
+	alert('Greatest Common Divisor ' + residual)
 } else {
-	let quotientMultipliedElemArr = (Math.floor(randomArray[1] / randomArray[0]) * randomArray[0]);
-	let residual = randomArray[1] - quotientMultipliedElemArr;
-	const randomArray2 = [randomArray[0], residual];
+	let residual
+	while (numArray[1] % numArray[0] !== 0) {
+		residual = numArray[1] % numArray[0];
+		numArray = [residual, numArray[0]];
+	}
+	alert('Greatest Common Divisor ' + residual)
 }
+
+
 
 
 // Зацикли відображення днів тижня таким чином: «День тижня. Хочеш побачити наступний день? » і так до тих пір, поки користувач натискає OK.
